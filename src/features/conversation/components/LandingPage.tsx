@@ -225,12 +225,34 @@ export default function LandingPage() {
           </button>
         )}
 
+
+        {/* Demo instructions for judges */}
+        <div className="mt-6 max-w-md text-center">
+          <p className="font-mono text-[11px] leading-relaxed text-muted-foreground/70">
+            🎤 Click above, allow microphone access, then speak naturally.
+            Try: "What is the weather in Singapore?" or "推荐新加坡美食"
+          </p>
+        </div>
+
         {error && (
           <p className="mt-4 font-mono text-xs tracking-[-0.01em] text-state-error">
             {error}
           </p>
         )}
       </main>
+
+
+        {/* Tech stack badges for hackathon judges */}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+          {['Agora ConvoAI', 'Xiaomi MiMo', 'Ares STT', 'MiniMax TTS', 'Next.js 16'].map((tech) => (
+            <span
+              key={tech}
+              className="rounded bg-muted/50 px-2 py-0.5 font-mono text-[10px] text-muted-foreground/50"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
 
       <footer className="relative z-20 flex items-center gap-2 px-6 pb-5 pt-3.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
         <span>Built for UCWS Hackathon 2026 by</span>
