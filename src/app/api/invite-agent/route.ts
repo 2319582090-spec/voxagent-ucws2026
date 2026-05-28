@@ -15,7 +15,6 @@ import type {
 import {
   ADA_PROMPT,
   AGENT_UID,
-  GREETING,
   getLanguageConfig,
 } from '@/features/conversation/server/invite-agent-config';
 

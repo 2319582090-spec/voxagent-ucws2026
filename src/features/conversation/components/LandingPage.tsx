@@ -8,7 +8,6 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
 import { Ambient, BrandMark, ErrorToast } from '@/components/convo-ui';
 import { useAgoraSession } from '@/features/conversation/hooks/useAgoraSession';
-import { ADA_AGENT_NAME } from '@/features/conversation/lib/view-state';
 
 // Dynamically import the ConversationShell with ssr disabled.
 const ConversationShell = dynamic(() => import('./ConversationShell'), {
@@ -139,7 +138,7 @@ export default function LandingPage() {
             product. "any LLM" does the pluggability work in one word; no need
             for cycle or BYO label when one adjective carries the meaning. */}
         <p className="mt-5 max-w-xl text-center font-ui text-sm leading-relaxed text-muted-foreground">
-          Powered by Xiaomi MiMo and Agora's real-time voice engine. Luna is a
+          Powered by Xiaomi MiMo and Agora&apos;s real-time voice engine. Luna is a
           smart voice agent built for Singapore. Talk to her now.
         </p>
 
