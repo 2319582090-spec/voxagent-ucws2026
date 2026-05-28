@@ -153,9 +153,6 @@ export default function LandingPage() {
               {[
                 { code: 'en-US', label: 'English', flag: '🇬🇧' },
                 { code: 'zh-CN', label: '中文', flag: '🇨🇳' },
-                { code: 'ja-JP', label: '日本語', flag: '🇯🇵' },
-                { code: 'ko-KR', label: '한국어', flag: '🇰🇷' },
-                { code: 'ms-MY', label: 'Melayu', flag: '🇲🇾' },
               ].map((lang) => (
                 <button
                   key={lang.code}
