@@ -230,7 +230,7 @@ export default function LandingPage() {
         <div className="mt-6 max-w-md text-center">
           <p className="font-mono text-[11px] leading-relaxed text-muted-foreground/70">
             🎤 Click above, allow microphone access, then speak naturally.
-            Try: "What is the weather in Singapore?" or "推荐新加坡美食"
+            Try: &quot;What is the weather in Singapore?&quot; or &quot;推荐新加坡美食&quot;
           </p>
         </div>
 
