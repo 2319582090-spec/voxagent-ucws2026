@@ -16,6 +16,7 @@ import {
   ADA_PROMPT,
   AGENT_UID,
   GREETING,
+  getLanguageConfig,
 } from '@/features/conversation/server/invite-agent-config';
 
 function requireEnv(name: string): string {
@@ -28,7 +29,12 @@ export async function POST(request: NextRequest) {
   try {
     // --- 1. Parse request ---
     const body: ClientStartRequest = await request.json();
-    const { requester_id, channel_name } = body;
+    const { requester_id, channel_name, language } = body;
+    
+    // Get language-specific configuration
+    const langConfig = getLanguageConfig(language);
+    const greeting = langConfig.greeting;
+    const instructions = ADA_PROMPT + langConfig.promptSuffix;
 
     const appId = requireEnv('NEXT_PUBLIC_AGORA_APP_ID');
     const appCertificate = requireEnv('NEXT_AGORA_APP_CERTIFICATE');
@@ -52,8 +58,8 @@ export async function POST(request: NextRequest) {
     // VoxAgent pipeline: Deepgram STT → Xiaomi MiMo LLM → MiniMax TTS
     const agent = new Agent({
       name: `voxagent-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
-      instructions: ADA_PROMPT,
-      greeting: GREETING,
+      instructions,
+      greeting,
       failureMessage: 'Sorry, I had a hiccup. Give me a moment please.',
       maxHistory: 50,
       turnDetection: {
@@ -80,7 +86,7 @@ export async function POST(request: NextRequest) {
       .withStt(
         new DeepgramSTT({
           model: 'nova-3',
-          language: 'en',
+          language: langConfig.sttLanguage,
         }),
       )
       .withLlm(
@@ -89,7 +95,7 @@ export async function POST(request: NextRequest) {
           apiKey: requireEnv('NEXT_LLM_API_KEY'),
           url: requireEnv('NEXT_LLM_URL'),
           model: process.env.NEXT_LLM_MODEL || 'mimo-v2.5-pro',
-          greetingMessage: GREETING,
+          greetingMessage: greeting,
           failureMessage: 'Sorry, I had a hiccup. Give me a moment please.',
           maxHistory: 15,
           maxTokens: 1024,
@@ -100,7 +106,7 @@ export async function POST(request: NextRequest) {
       .withTts(
         new MiniMaxTTS({
           model: 'speech_2_6_turbo',
-          voiceId: 'English_captivating_female1',
+          voiceId: langConfig.ttsVoiceId,
         }),
       );
 

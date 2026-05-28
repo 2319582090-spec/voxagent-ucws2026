@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, Suspense } from 'react';
+import { useRef, useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -62,6 +62,7 @@ export default function LandingPage() {
     endConversation,
     handleTokenWillExpire,
   } = useAgoraSession();
+  const [selectedLanguage, setSelectedLanguage] = useState('en-US');
 
   // In-call path: ConversationShell owns its own shell. We just mount it inside the RTC
   // provider + error boundary. The non-fatal invite warning floats on top as a toast so it
@@ -142,6 +143,38 @@ export default function LandingPage() {
           smart voice agent built for Singapore. Talk to her now.
         </p>
 
+        {/* Language Selector */}
+        {!showConversation && (
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <p className="font-ui text-xs uppercase tracking-widest text-muted-foreground">
+              Choose your language
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {[
+                { code: 'en-US', label: 'English', flag: '🇬🇧' },
+                { code: 'zh-CN', label: '中文', flag: '🇨🇳' },
+                { code: 'ja-JP', label: '日本語', flag: '🇯🇵' },
+                { code: 'ko-KR', label: '한국어', flag: '🇰🇷' },
+                { code: 'ms-MY', label: 'Melayu', flag: '🇲🇾' },
+              ].map((lang) => (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => setSelectedLanguage(lang.code)}
+                  className={`flex items-center gap-1.5 rounded-full border px-4 py-2 font-ui text-sm transition-all duration-150 \${
+                    selectedLanguage === lang.code
+                      ? 'border-foreground bg-foreground text-accent-foreground'
+                      : 'border-border bg-background text-muted-foreground hover:border-foreground/40 hover:text-foreground'
+                  }`}
+                >
+                  <span>{lang.flag}</span>
+                  <span>{lang.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {showConversation && (!agoraData || !rtmClient) ? (
           <p className="mt-8 max-w-md text-center font-ui text-sm text-muted-foreground">
             Failed to load conversation data.
@@ -150,7 +183,7 @@ export default function LandingPage() {
           <button
             type="button"
             className="mt-8 inline-flex h-14 cursor-pointer items-center gap-2.5 rounded-full border-none bg-foreground px-10 font-ui text-base font-medium tracking-[-0.01em] text-accent-foreground transition-all duration-200 ease-voice-out hover:-translate-y-px hover:bg-foreground/90 disabled:cursor-default disabled:translate-y-0 disabled:opacity-70 disabled:hover:bg-foreground"
-            onClick={startConversation}
+            onClick={() => startConversation(selectedLanguage)}
             disabled={isLoading}
             aria-label={isLoading ? 'Starting conversation' : 'Start conversation'}
           >

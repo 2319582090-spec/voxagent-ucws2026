@@ -9,14 +9,14 @@ import type {
   ClientStartRequest,
 } from '@/features/conversation/types';
 
-interface UseAgoraSessionResult {
+export interface UseAgoraSessionResult {
   showConversation: boolean;
   isLoading: boolean;
   error: string | null;
   agentJoinError: boolean;
   agoraData: AgoraTokenData | null;
   rtmClient: RTMClient | null;
-  startConversation: () => Promise<void>;
+  startConversation: (language?: string) => Promise<void>;
   endConversation: () => void;
   handleTokenWillExpire: (uid: string) => Promise<AgoraRenewalTokens>;
 }
@@ -38,7 +38,7 @@ export function useAgoraSession(): UseAgoraSessionResult {
     import('agora-rtm').catch(() => {});
   }, []);
 
-  const startConversation = useCallback(async () => {
+  const startConversation = useCallback(async (language?: string) => {
     setIsLoading(true);
     setError(null);
     setAgentJoinError(false);
@@ -65,6 +65,7 @@ export function useAgoraSession(): UseAgoraSessionResult {
           body: JSON.stringify({
             requester_id: responseData.uid,
             channel_name: responseData.channel,
+            language: language || 'en-US',
           } as ClientStartRequest),
         })
           .then(async (res) => {

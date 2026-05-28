@@ -57,6 +57,51 @@ Luna: "哇，新加坡美食太多了！我最推荐去老巴刹吃沙爹，或�
 User: "怎么去金沙酒店？"
 Luna: "很简单！坐地铁到 Bayfront 站，走出口 C 就直接到金沙了。如果你在市中心，坐蓝线或黄线都可以到。大概十几分钟就到了！"`;
 
+// Language configuration for multi-language support
+export interface LanguageConfig {
+  greeting: string;
+  sttLanguage: string;
+  ttsVoiceId: string;
+  promptSuffix: string;
+}
+
+export const LANGUAGE_CONFIGS: Record<string, LanguageConfig> = {
+  'en-US': {
+    greeting: "Hey! I'm Luna, your AI voice assistant for Singapore. Ask me anything — from hawker food to MRT directions. What can I help you with?",
+    sttLanguage: 'en',
+    ttsVoiceId: 'English_captivating_female1',
+    promptSuffix: '',
+  },
+  'zh-CN': {
+    greeting: '嗨！我是 Luna，你的新加坡AI语音助手。你可以问我任何问题，从美食推荐到地铁导航都可以。有什么可以帮你的吗？',
+    sttLanguage: 'zh-CN',
+    ttsVoiceId: 'Chinese_stories_female1',
+    promptSuffix: '\n\nIMPORTANT: The user has selected Chinese (中文) as their preferred language. You MUST respond entirely in Chinese (中文). Keep your greeting and all responses in Mandarin Chinese.',
+  },
+  'ja-JP': {
+    greeting: 'こんにちは！シンガポールのAI音声アシスタント、ルナです。食べ物の探し方からMRTの路線まで、何でも聞いてください。何かお手伝いできますか？',
+    sttLanguage: 'ja',
+    ttsVoiceId: 'Japanese_gentle_female1',
+    promptSuffix: '\n\nIMPORTANT: The user has selected Japanese (日本語) as their preferred language. You MUST respond entirely in Japanese.',
+  },
+  'ko-KR': {
+    greeting: '안녕하세요! 싱가포르 AI 음성 비서 루나입니다. 음식 추천부터 MRT 길찾기까지 뭔든 물어보세요. 무엇을 도와드릴까요?',
+    sttLanguage: 'ko',
+    ttsVoiceId: 'Korean_gentle_female1',
+    promptSuffix: '\n\nIMPORTANT: The user has selected Korean (한국어) as their preferred language. You MUST respond entirely in Korean.',
+  },
+  'ms-MY': {
+    greeting: 'Hai! Saya Luna, pembantu suara AI anda untuk Singapura. Tanya saya apa sahaja — dari makanan ke arah MRT. Apa yang boleh saya bantu?',
+    sttLanguage: 'ms',
+    ttsVoiceId: 'English_captivating_female1',
+    promptSuffix: '\n\nIMPORTANT: The user has selected Malay (Bahasa Melayu) as their preferred language. You MUST respond entirely in Malay.',
+  },
+};
+
+export function getLanguageConfig(lang?: string): LanguageConfig {
+  return LANGUAGE_CONFIGS[lang || 'en-US'] || LANGUAGE_CONFIGS['en-US'];
+}
+
 // First thing the agent says when a user joins the channel.
 export const GREETING =
   process.env.NEXT_AGENT_GREETING ??
