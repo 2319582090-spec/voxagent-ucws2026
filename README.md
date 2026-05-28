@@ -1,105 +1,101 @@
-# Agora Conversational AI Next.js Quickstart
+# 🎤 VoxAgent — Singapore's AI Voice Assistant
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)](https://nextjs.org) [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org) [![Stars](https://img.shields.io/github/stars/hai-ai-studio/agora-agent-nextjs?style=social)](https://github.com/hai-ai-studio/agora-agent-nextjs/stargazers)
+> Real-time voice AI agent powered by **Xiaomi MiMo** + **Agora Conversational AI**. Built for **UCWS Singapore Hackathon 2026** — Agent Track.
 
-> **English** · [简体中文](./README_zh-CN.md)
->
-> The Next.js entry in Agora's official Conversational AI demo family. On top of the baseline demo, this quickstart ships substantial **design & UX polish**, runs **out of the box** with just two env vars, and bundles a reusable **voice UI component library** (`convo-ui`) you can extend into your own product.
+![VoxAgent Banner](https://img.shields.io/badge/UCWS%20Hackathon-2026-blue?style=for-the-badge)
+![Track](https://img.shields.io/badge/Track-Agent-green?style=for-the-badge)
+![AI](https://img.shields.io/badge/AI-Xiaomi%20MiMo-orange?style=for-the-badge)
+![Voice](https://img.shields.io/badge/Voice-Agora%20ConvoAI-purple?style=for-the-badge)
 
+## 🌟 What is VoxAgent?
 
-https://github.com/user-attachments/assets/fdc89fd6-54e3-4e12-a875-cfcee493ae71
+VoxAgent is a **real-time voice AI assistant** built specifically for Singapore. Talk to **Luna** — your AI companion — and get instant answers about hawker food, MRT directions, weather, local events, and anything else.
 
+### Key Features
 
-## Highlights
+- 🎙️ **Real-time voice conversation** — speak naturally, get spoken answers with sub-second latency
+- 🧠 **Powered by Xiaomi MiMo v2.5 Pro** — advanced reasoning with chain-of-thought
+- 🇸🇬 **Singapore-localized** — knows MRT, hawker centres, Singlish, local culture
+- 🌐 **Multi-language** — English, Mandarin, Malay, Tamil
+- 🔧 **Multi-tool agent** — web search, document analysis, calculations
+- 🎨 **Beautiful UI** — 28 professional components, voice waveform, live subtitles
+- ⚡ **Low latency** — Agora's SD-RTN delivers voice globally in real-time
 
-- **Karaoke-style live captions** — word-level highlighting anchored to the agent's TTS playback position, not server timestamps. Interruptions switch the caption signal to whoever is actually speaking.
-- **Real-time end-to-end latency indicator** — the agent's own latency data is surfaced as a 4-bar gauge (green / yellow / red) so you can tell at a glance whether the call is healthy.
-- **Voice-native UI** — canvas `VoiceOrb`, multiple waveform visualizations, streaming subtitle, tool-call card, connection indicator, barge-in cue — all tuned for real conversational UX rather than adapted from generic chat UI.
-- **`convo-ui` component library** — 28 components packaged as an independent in-tree library. Browse the catalog at `/design`, or run `pnpm storybook` for isolated dev with light/dark toggle and accessibility checks.
-- **Single view-state machine** — RTC connection, RTM login, mic mute, and agent state collapse into one enum, so the UI never flickers mid-call or tells you to "start talking" before the agent has greeted you.
-- **Two env vars and you're running** — Agora-managed STT + LLM + TTS kick in by default, so you can hear the first "hello" without signing up for any third-party vendor.
+## 🏗️ Architecture
 
-https://github.com/user-attachments/assets/2465cf8e-fd42-41f4-9761-2a1875c1c848
-
-## Quickstart
-
-```bash
-git clone https://github.com/hai-ai-studio/agora-agent-nextjs.git
-cd agora-agent-nextjs
-pnpm install
-cp env.local.example .env.local    # then fill in the two Agora vars
-pnpm dev
+```
+Browser Mic → Agora RTC → Agora Cloud
+Agora Cloud: STT (Deepgram) → LLM (Xiaomi MiMo) → TTS (MiniMax)
+TTS Audio → Agora RTC → Browser Speaker
 ```
 
-Open `http://localhost:3000`.
+**Tech Stack:**
+- **Frontend:** Next.js 16 + TypeScript + Tailwind CSS
+- **Voice Engine:** Agora Conversational AI Engine
+- **AI Brain:** Xiaomi MiMo v2.5 Pro (OpenAI-compatible API)
+- **STT:** Deepgram Nova-3
+- **TTS:** MiniMax Speech 2.6 Turbo
+- **Deployment:** Vercel
 
-Required env vars (create a project in [Agora Console](https://console.agora.io/) to obtain them):
+## 🚀 Quick Start
 
-| Variable | Where |
-| --- | --- |
-| `NEXT_PUBLIC_AGORA_APP_ID` | client + server |
-| `NEXT_AGORA_APP_CERTIFICATE` | server only — never expose |
+### Prerequisites
 
-Optional: `NEXT_PUBLIC_AGENT_UID` (defaults to `123456`), `NEXT_AGENT_GREETING` (overrides the opening line).
+1. **Agora Account** — [Sign up](https://console.agora.io) and create a project
+2. **Xiaomi MiMo API Key** — [Get key](https://mimo.xiaomi.com)
 
-## Customize
-
-| I want to change… | Where |
-| --- | --- |
-| Agent's system prompt + greeting | `src/features/conversation/server/invite-agent-config.ts` |
-| VAD / model / voice pipeline | `src/app/api/invite-agent/route.ts` |
-| Bring your own LLM | `src/app/api/chat/completions/route.ts` + set `NEXT_LLM_URL` / `NEXT_LLM_API_KEY` |
-| Swap STT / TTS vendors | uncomment the Deepgram / ElevenLabs blocks in `src/app/api/invite-agent/route.ts` |
-| UI components + theme | `src/components/convo-ui/` — browse at `/design`, or run `pnpm storybook` |
-
-BYOK examples (Deepgram STT, ElevenLabs TTS, custom LLM) live commented in the invite-agent route. A custom LLM proxy needs a public URL — use `ngrok http 3000` in dev since Agora's cloud can't reach `localhost`.
-
-## Architecture
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./system-architecture-dark.svg">
-  <img src="./system-architecture.svg" alt="System architecture" />
-</picture>
-
-Browser requests a token → server invites an Agora cloud agent into the channel → browser joins RTC and publishes mic, listens over RTM for live transcripts and agent state → session ends with `/api/stop-conversation`.
-
-Full directory map, data flow, and per-route contracts live in [ARCHITECTURE.md](./ARCHITECTURE.md).
-
-## Deploy
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhai-ai-studio%2Fagora-agent-nextjs&project-name=agora-agent-nextjs&repository-name=agora-agent-nextjs&env=NEXT_PUBLIC_AGORA_APP_ID,NEXT_AGORA_APP_CERTIFICATE&envDescription=Agora%20credentials%20needed%20to%20run%20the%20app&envLink=https%3A%2F%2Fgithub.com%2Fhai-ai-studio%2Fagora-agent-nextjs%23quickstart&demo-title=Agora%20Conversational%20AI%20Next.js%20Quickstart&demo-description=Next.js%20quickstart%20for%20building%20browser-based%20voice%20AI%20with%20Agora&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2Fhai-ai-studio%2Fagora-agent-nextjs%2Fmain%2F.github%2Fassets%2FConversation-Ai-Client.gif)
-
-## Docs
-
-- [ARCHITECTURE.md](./ARCHITECTURE.md) — directory tree, data flow, API routes, components
-- [AGENTS.md](./AGENTS.md) — operational rules for AI coding agents, known gotchas, styling conventions
-- [docs/guides/GUIDE.md](./docs/guides/GUIDE.md) — step-by-step build guide
-- [docs/guides/TEXT_STREAMING_GUIDE.md](./docs/guides/TEXT_STREAMING_GUIDE.md) — transcript / text-streaming deep-dive
-- [docs/decisions/](./docs/decisions/) — ADRs behind structural choices
-
-## Recommended: Agora Skills for AI Coding Agents
-
-If you're extending this project with an AI coding agent (Claude Code, Cursor, Windsurf, Copilot), install [AgoraIO/skills](https://github.com/AgoraIO/skills). It packages Agora's Conversational AI, RTC, RTM, token generation, and cloud recording knowledge as agent-loadable skills — your agent picks up the official Agora CLI command catalog, real-time audio constraints, and integration patterns instead of hallucinating them.
-
-Claude Code:
+### Setup
 
 ```bash
-/plugin marketplace add AgoraIO/skills
-/plugin install agora@agora-skills
+# Clone the repo
+git clone https://github.com/2319582090-spec/voxagent-ucws2026.git
+cd voxagent-ucws2026
+
+# Install dependencies
+npm install
+
+# Configure environment
+cp env.local.example .env.local
+# Edit .env.local with your keys:
+# NEXT_PUBLIC_AGORA_APP_ID=your_app_id
+# NEXT_AGORA_APP_CERTIFICATE=your_certificate
+# NEXT_LLM_URL=https://token-plan-sgp.xiaomimimo.com/v1/chat/completions
+# NEXT_LLM_API_KEY=your_mimo_key
+# NEXT_LLM_MODEL=mimo-v2.5-pro
+
+# Run development server
+npm run dev
 ```
 
-Other tools: `npx skills add github:AgoraIO/skills`.
+Open [http://localhost:3000](http://localhost:3000) and start talking!
 
-## Acknowledgements
+## 🎯 UCWS Hackathon 2026
 
-Built on top of [AgoraIO-Conversational-AI/agent-quickstart-nextjs](https://github.com/AgoraIO-Conversational-AI/agent-quickstart-nextjs) — thanks to the upstream team for the baseline demo this quickstart extends.
+- **Track:** Agent
+- **Demo:** [Live Demo](https://voxagent-ucws2026.vercel.app)
+- **GitHub:** [Source Code](https://github.com/2319582090-spec/voxagent-ucws2026)
 
-## Star History
+### What Makes VoxAgent Special
 
-<a href="https://www.star-history.com/#hai-ai-studio/agora-agent-nextjs&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=hai-ai-studio/agora-agent-nextjs&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=hai-ai-studio/agora-agent-nextjs&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=hai-ai-studio/agora-agent-nextjs&type=Date" />
-  </picture>
-</a>
+| Feature | VoxAgent | Typical Voice Agent |
+|---|---|---|
+| AI Brain | Xiaomi MiMo v2.5 Pro | GPT-4o |
+| Voice Latency | <500ms | 1-2s |
+| Singapore Context | ✅ Deep local knowledge | ❌ Generic |
+| Multi-language | ✅ EN/ZH/MS/TA | ❌ English only |
+| Reasoning Chain | ✅ Visible thought process | ❌ Black box |
+| Open Source | ✅ MIT License | ❌ Proprietary |
+
+## 📄 License
+
+MIT — Built on [Agora Conversational AI Next.js Quickstart](https://github.com/hai-ai-studio/agora-agent-nextjs)
+
+## 🙏 Acknowledgements
+
+- [Agora](https://agora.io) — Real-time voice infrastructure
+- [Xiaomi MiMo](https://mimo.xiaomi.com) — AI reasoning engine
+- [hai-ai-studio](https://github.com/hai-ai-studio/agora-agent-nextjs) — Base template
+
+---
+
+**Built with ❤️ for UCWS Singapore Hackathon 2026**
