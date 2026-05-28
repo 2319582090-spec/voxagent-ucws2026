@@ -31,7 +31,7 @@ export function AgentConfigCard() {
             </span>
           </div>
           <div className="mt-0.5 text-xs text-muted-foreground">
-            Voice · GPT-4o · Ada · en-US
+            Voice · MiMo v2.5 Pro · Ada · en-US
           </div>
         </div>
       </div>

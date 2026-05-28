@@ -34,9 +34,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Talk to an AI today, with Agora Conversational AI Engine!',
+  title: 'VoxAgent - Singapore AI Voice Assistant | MiMo + Agora',
   description:
-    "A voice first AI web-app powered by Agora's Conversational AI Engine. The easiest way to add voice to your LLM, without deploying new infrastructure.",
+    "Real-time voice AI agent for Singapore. Talk naturally, get answers instantly. Powered by Xiaomi MiMo and Agora Conversational AI.",
   icons: {
     icon: [
       { url: '/favicon.ico' },

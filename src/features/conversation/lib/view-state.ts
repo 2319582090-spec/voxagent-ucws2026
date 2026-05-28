@@ -7,8 +7,8 @@ import type { AgentVisualizerState } from 'agora-agent-uikit';
 // `connecting` and `preparing` split what used to be lumped into `idle`:
 //   - `connecting`: RTC/RTM not yet established, or the agent hasn't joined the channel
 //   - `preparing`: channel is up and the agent is in it, but we haven't received the
-//     first AGENT_STATE_CHANGED event (i.e. Ada hasn't started greeting yet)
-//   - `idle`: Ada has been active and is now quiet — safe for the user to speak
+//     first AGENT_STATE_CHANGED event (i.e. Luna hasn't started greeting yet)
+//   - `idle`: Luna has been active and is now quiet — safe for the user to speak
 //
 // There is no `ended` state: the end-call button unmounts the conversation tree and
 // returns to the landing screen. Anything that would have rendered for "ended" (Call
@@ -25,8 +25,8 @@ export type ViewState =
 
 // Map the AgoraAgent state + local mute/end-of-call flags to the view-state enum.
 // Priority: disconnected (error) > connecting > preparing > muted > active states.
-// `preparing` wins over `muted` because the mute hint ("Ada can't hear you") is misleading
-// before Ada has said anything — nothing is listening yet regardless of mic state.
+// `preparing` wins over `muted` because the mute hint ("Luna can't hear you") is misleading
+// before Luna has said anything — nothing is listening yet regardless of mic state.
 export function mapToViewState(
   visualizerState: AgentVisualizerState,
   agentState: AgentState | null,
@@ -38,7 +38,7 @@ export function mapToViewState(
   }
   // Agent is present in the channel but no AGENT_STATE_CHANGED has arrived yet — the
   // server-side greeting is still spinning up. Distinguishing this from real `idle`
-  // stops us from telling users "Say something" before Ada has had a chance to speak.
+  // stops us from telling users "Say something" before Luna has had a chance to speak.
   if (visualizerState === 'ambient' && agentState === null) {
     return 'preparing';
   }
@@ -58,7 +58,7 @@ export function mapToViewState(
 
 // Agent display name. Single source of truth for the label shown in hint copy,
 // transcript, persona card, and controls dock.
-export const ADA_AGENT_NAME = 'Ada';
+export const ADA_AGENT_NAME = 'Luna';
 
 // Hint copy keyed on ViewState. Empty string = no hint (caller should render a fixed-height
 // placeholder to avoid layout jumps).

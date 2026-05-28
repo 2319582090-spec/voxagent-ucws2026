@@ -4,21 +4,17 @@ import { createOpenAI } from '@ai-sdk/openai';
 import { randomUUID } from 'crypto';
 
 /**
- * OpenAI-compatible Chat Completions endpoint backed by Vercel AI SDK.
+ * OpenAI-compatible Chat Completions endpoint backed by Xiaomi MiMo.
  *
  * Agora's Conversational AI Engine calls this as its "custom LLM" — sending
  * standard OpenAI chat completion requests and expecting OpenAI SSE chunks back.
  *
- * Extension point: add RAG retrieval, tool calls, guards, etc. before/after
- * the streamText call.
+ * Powered by Xiaomi MiMo v2.5 Pro — with reasoning capabilities.
  */
 export async function POST(request: NextRequest) {
-  // ── Config ────────────────────────────────────────────────────────────────
   const apiKey = process.env.NEXT_LLM_API_KEY;
   const llmUrl = process.env.NEXT_LLM_URL;
-  // Model is pinned here — change this to switch models without other config changes.
-  // Never use body.model; that would allow callers to route to arbitrary models.
-  const modelId = 'gpt-4o';
+  const modelId = process.env.NEXT_LLM_MODEL || 'mimo-v2.5-pro';
 
   if (!apiKey || !llmUrl) {
     return NextResponse.json(
@@ -27,7 +23,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // @ai-sdk/openai needs a base URL, not the full /chat/completions path
   const baseURL = llmUrl.replace(/\/chat\/completions\/?$/, '');
 
   let body: {
@@ -46,7 +41,6 @@ export async function POST(request: NextRequest) {
   const openai = createOpenAI({ apiKey, baseURL });
 
   const result = streamText({
-    // modelId is always sourced from the environment — body.model is ignored
     model: openai(modelId),
     messages: (body.messages ?? []) as NonNullable<Parameters<typeof streamText>[0]['messages']>,
   });
@@ -70,7 +64,6 @@ export async function POST(request: NextRequest) {
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        // Role-only first chunk (OpenAI convention)
         controller.enqueue(sseChunk({ role: 'assistant', content: '' }));
 
         for await (const chunk of result.textStream) {
@@ -81,7 +74,7 @@ export async function POST(request: NextRequest) {
         controller.enqueue(encoder.encode('data: [DONE]\n\n'));
         controller.close();
       } catch (err) {
-        console.error('[custom-llm] Stream error:', err);
+        console.error('[voxagent-llm] Stream error:', err);
         controller.error(err);
       }
     },

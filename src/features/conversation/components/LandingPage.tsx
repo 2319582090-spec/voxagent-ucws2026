@@ -109,12 +109,12 @@ export default function LandingPage() {
         <BrandMark />
         <nav className="flex items-center">
           <a
-            href="https://docs.agora.io/en/conversational-ai/overview/product-overview"
+            href="https://github.com/EpicConnectorAI/UCWS-SINGAPORE-HACKATHON-2026"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
-            Docs →
+            GitHub →
           </a>
         </nav>
       </header>
@@ -124,22 +124,22 @@ export default function LandingPage() {
             specific demo character. Warm, editorial, invitation-first; the
             stack and pluggability story lives in the body paragraph below. */}
         <h1 className="max-w-3xl text-center font-display text-[clamp(40px,6vw,64px)] italic font-normal leading-[1.05] tracking-[-0.02em] text-foreground">
-          Say Hi To Your Agent
+          Talk to Luna
         </h1>
 
         {/* Editorial sub — italic serif pull-quote, the strongest single line on
             the page. Implies bidirectional conversation + quality (other voice
             AI doesn't actually listen). */}
         <p className="mt-5 max-w-2xl text-center font-display text-lg italic leading-snug text-muted-foreground">
-          Conversations that sound like someone&apos;s actually listening.
+          Your AI voice assistant for Singapore — powered by MiMo + Agora.
         </p>
 
         {/* Body — honest framing of Ada as sample + reader's agent as the real
             product. "any LLM" does the pluggability work in one word; no need
             for cycle or BYO label when one adjective carries the meaning. */}
         <p className="mt-5 max-w-xl text-center font-ui text-sm leading-relaxed text-muted-foreground">
-          Agora&apos;s Conversational AI Engine turns any LLM into a real-time
-          voice agent. {ADA_AGENT_NAME} is one we built. Yours is next.
+          Powered by Xiaomi MiMo and Agora's real-time voice engine. Luna is a
+          smart voice agent built for Singapore. Talk to her now.
         </p>
 
         {showConversation && (!agoraData || !rtmClient) ? (
@@ -171,7 +171,7 @@ export default function LandingPage() {
                   strokeWidth={1.8}
                   aria-hidden="true"
                 />
-                Start the call
+                Talk to Luna
               </>
             )}
           </button>
@@ -185,7 +185,7 @@ export default function LandingPage() {
       </main>
 
       <footer className="relative z-20 flex items-center gap-2 px-6 pb-5 pt-3.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-        <span>An open-source quickstart by</span>
+        <span>Built for UCWS Hackathon 2026 by</span>
         <a
           href="https://agora.io/en/"
           target="_blank"
