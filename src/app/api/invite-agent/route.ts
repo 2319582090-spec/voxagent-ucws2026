@@ -3,7 +3,7 @@ import {
   AgoraClient,
   Agent,
   Area,
-  DeepgramSTT,
+  AresSTT,
   ExpiresIn,
   MiniMaxTTS,
   OpenAI,
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       appCertificate,
     });
 
-    // VoxAgent pipeline: Deepgram STT → Xiaomi MiMo LLM → MiniMax TTS
+    // VoxAgent pipeline: Ares STT (Agora built-in) → Xiaomi MiMo LLM → MiniMax TTS (Agora built-in)
     const agent = new Agent({
       name: `voxagent-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
       instructions,
@@ -84,13 +84,13 @@ export async function POST(request: NextRequest) {
       parameters: { data_channel: 'rtm', enable_error_message: true },
     })
       .withStt(
-        new DeepgramSTT({
-          model: 'nova-3',
+        // Ares: Agora's built-in ASR — no external API key required
+        new AresSTT({
           language: langConfig.sttLanguage,
         }),
       )
       .withLlm(
-        // BYOK: Xiaomi MiMo as custom LLM
+        // BYOK: Xiaomi MiMo as custom LLM (OpenAI-compatible)
         new OpenAI({
           apiKey: requireEnv('NEXT_LLM_API_KEY'),
           url: requireEnv('NEXT_LLM_URL'),
@@ -104,6 +104,7 @@ export async function POST(request: NextRequest) {
         }),
       )
       .withTts(
+        // MiniMax TTS via Agora's built-in access (no external key needed)
         new MiniMaxTTS({
           model: 'speech_2_6_turbo',
           voiceId: langConfig.ttsVoiceId,
