@@ -161,6 +161,24 @@ export async function POST(request: NextRequest) {
 
   const messages = (body.messages ?? []) as Array<{ role: string; content: string }>;
   
+  // ─── Singapore Context Injection ──────────────────────────────────────────
+  // Inject Singapore context so MiMo can answer local questions even without tools
+  const singaporeContext = `You are Luna, a voice AI assistant for Singapore. You know about:
+- MRT: Lines (NS/EW/CC/DL/NE), EZ-Link card, fares ($0.92-2.50 SGD)
+- Food: Chicken rice, laksa, chili crab, satay, roti prata, char kway teow
+- Hawker centres: Maxwell, Lau Pa Sat, Old Airport Road, Tiong Bahru
+- Attractions: Marina Bay Sands, Sentosa, Gardens by the Bay, Orchard Road
+- Weather: Tropical 25-33°C, humid, afternoon showers common
+- Transport: MRT, buses, Grab, taxis. All accept EZ-Link/contactless
+- Singlish: lah (emphasis), leh (question), can (yes), shiok (great), makan (eat)
+- Currency: 1 USD ≈ 1.35 SGD. Use Singapore Dollars (SGD) for local prices.
+Keep responses SHORT (1-3 sentences for voice). Be natural and warm.`;
+
+  // Inject as system message at the start if not already present
+  if (messages.length > 0 && messages[0].role !== 'system') {
+    messages.unshift({ role: 'system', content: singaporeContext });
+  }
+  
   // ─── Pre-LLM Tool Injection ───────────────────────────────────────────────
   // Detect tool intent from the last user message and inject results as context
   const lastUserMsg = [...messages].reverse().find(m => m.role === 'user');
