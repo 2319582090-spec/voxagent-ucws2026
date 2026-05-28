@@ -142,6 +142,25 @@ export default function LandingPage() {
           smart voice agent built for Singapore. Talk to her now.
         </p>
 
+
+        {/* Feature highlights for hackathon judges */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          {[
+            { icon: '🎙️', label: 'Real-time Voice' },
+            { icon: '🧠', label: 'MiMo Reasoning' },
+            { icon: '🇸🇬', label: 'Singapore Local' },
+            { icon: '🔧', label: 'Tool Calling' },
+          ].map((feat) => (
+            <div
+              key={feat.label}
+              className="flex items-center gap-1.5 rounded-full border border-border/60 bg-background/50 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground"
+            >
+              <span>{feat.icon}</span>
+              <span>{feat.label}</span>
+            </div>
+          ))}
+        </div>
+
         {/* Language Selector */}
         {!showConversation && (
           <div className="mt-6 flex flex-col items-center gap-3">

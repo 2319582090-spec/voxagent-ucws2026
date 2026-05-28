@@ -36,6 +36,36 @@ function getCurrentTime(): string {
   return `Singapore time (SGT, UTC+8): ${sgt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })} on ${sgt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
 }
 
+
+async function convertCurrency(amount: number, from: string, to: string): Promise<string> {
+  const rates: Record<string, number> = {
+    'USD': 1.0, 'SGD': 1.35, 'CNY': 7.25, 'EUR': 0.92, 'GBP': 0.79, 'JPY': 157.0, 'MYR': 4.72, 'THB': 35.8, 'KRW': 1380, 'INR': 83.5, 'AUD': 1.53, 'HKD': 7.83,
+  };
+  const fromRate = rates[from.toUpperCase()] || 1;
+  const toRate = rates[to.toUpperCase()] || 1;
+  const result = (amount / fromRate) * toRate;
+  return `${amount} ${from.toUpperCase()} = ${result.toFixed(2)} ${to.toUpperCase()} (approximate rate)`;
+}
+
+function getRestaurantRecommend(cuisine: string): string {
+  const restaurants: Record<string, string> = {
+    chinese: "Hawker Chan (Michelin star, 3-5 SGD), Din Tai Fung (Taiwanese), Crystal Jade (Cantonese).",
+    malay: "Hjh Maimunah (Kampong Glam), Warong Nasi Pariaman (nasi padang), Hajah Mona.",
+    indian: "Banana Leaf Apollo (fish head curry), Komala Vilas (vegetarian), MTR 1924 (South Indian).",
+    japanese: "Sushi Tei, Ichiban Boshi (omakase), Ramen Santouka (Cuppage Plaza).",
+    korean: "Kko Kko Nara (BBQ, Tanjong Pagar), Seoul Restaurant (Cuppage Plaza).",
+    seafood: "Jumbo Seafood (East Coast, chili crab), Long Beach Seafood (black pepper crab).",
+    local: "Tian Tian Chicken Rice (Maxwell), Hill Street Tai Hwa Pork Noodle (Michelin), 328 Katong Laksa.",
+    western: "Burnt Ends (BBQ, 1 Michelin star), Odette (3 Michelin stars), PS.Cafe (brunch).",
+  };
+  
+  const cuisineLower = cuisine.toLowerCase();
+  for (const [key, value] of Object.entries(restaurants)) {
+    if (cuisineLower.includes(key)) return value;
+  }
+  return 'Singapore has amazing food everywhere! Try hawker centres for local food ($3-6 SGD), or explore Dempsey Hill, Clarke Quay, and Robertson Quay for restaurants.';
+}
+
 function searchSingaporeInfo(query: string): string {
   const knowledge: Record<string, string> = {
     chicken_rice: 'Best chicken rice: Tian Tian at Maxwell Food Centre ($3.50-5 SGD), Boon Tong Kee (multiple locations), Wee Nam Kee. All are Michelin-recommended.',
@@ -75,6 +105,17 @@ function extractToolCalls(content: string): { name: string; args: Record<string,
     calls.push({ name: 'get_current_time', args: {} });
   }
   
+  if (lower.includes('convert') || lower.includes('exchange') || lower.includes('currency') || lower.includes('换') || lower.includes('汇率')) {
+    const amountMatch = content.match(/(\d+\.?\d*)/);
+    const amount = amountMatch ? parseFloat(amountMatch[1]) : 100;
+    calls.push({ name: 'convert_currency', args: { amount: String(amount), from: 'USD', to: 'SGD' } });
+  }
+  
+  if (lower.includes('restaurant') || lower.includes('eat') || lower.includes('dinner') || lower.includes('lunch') || lower.includes('餐厅') || lower.includes('吃饭')) {
+    const cuisineMatch = content.match(/(chinese|malay|indian|japanese|korean|seafood|local|western)/i);
+    calls.push({ name: 'get_restaurant', args: { cuisine: cuisineMatch?.[1] || 'local' } });
+  }
+  
   return calls;
 }
 
@@ -83,6 +124,8 @@ async function executeTool(name: string, args: Record<string, string>): Promise<
     case 'get_weather': return await getWeather(args.location || 'Singapore');
     case 'get_current_time': return getCurrentTime();
     case 'search_singapore_info': return searchSingaporeInfo(args.query || '');
+    case 'convert_currency': return convertCurrency(Number(args.amount || 100), args.from || 'USD', args.to || 'SGD');
+    case 'get_restaurant': return getRestaurantRecommend(args.cuisine || 'local');
     default: return `Unknown tool: ${name}`;
   }
 }
