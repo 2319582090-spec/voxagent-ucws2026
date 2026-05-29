@@ -115,6 +115,23 @@ NEXT_LLM_MODEL=mimo-v2.5-pro
 - **Storybook** for component development (`npm run storybook`)
 - **Production-ready** deployment on Vercel
 
+## 🧩 Companion Workspace App: mimo2codex++
+
+This repo also includes a companion workspace app at `apps/mimo2codex-plusplus/`.  
+Display name: **mimo2codex++**.
+
+It is intended for:
+- multi-account MiMo key management
+- request distribution / concurrency handling
+- per-key quota and usage visibility
+- one-click Codex setup generation
+
+Run only the companion app:
+
+```bash
+pnpm --filter mimo2codex-plusplus dev
+```
+
 ## 🏆 Hackathon Integration
 
 | Sponsor Tech | How We Use It |
