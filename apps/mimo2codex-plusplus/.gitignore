@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# build output
+.next/
+out/
+dist/
+
+# data directory (contains sensitive API keys)
+data/
+
+# logs
+*.log
+npm-debug.log*
+
+# env files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+*.swp
+*~
