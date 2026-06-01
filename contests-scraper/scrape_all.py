@@ -35,9 +35,12 @@ def run_all():
     for _, module_name, _ in pkgutil.iter_modules(["sources"]):
         sources.append(module_name)
 
-    for name in sorted(sources):
+    import sys
+skip_ai = "--skip-ai-search" in sys.argv
+for name in sorted(sources):
         try:
             module = importlib.import_module(f"sources.{name}", package=None)
+            if skip_ai and name == "ai_search": continue
             if not hasattr(module, "scrape"):
                 continue
             print(f"  ⏳ 正在抓取 {name}...")

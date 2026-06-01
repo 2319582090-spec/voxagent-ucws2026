@@ -1,9 +1,8 @@
-name: Deploy Contest Calendar to GitHub Pages
+name: Deploy Contest Calendar
 
 on:
   schedule:
-    - cron: "0 1 * * *"   # 每天 UTC 1:00 (北京时间 9:00)
-    - cron: "0 13 * * *"  # 每天 UTC 13:00 (北京时间 21:00)
+    - cron: "0 2 * * 1,4"   # 每周一、四 北京时间 10:00（每周2次）
   workflow_dispatch:
 
 permissions:
@@ -29,29 +28,23 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4 lxml
 
-      - name: Run scraper
+      - name: Run scraper (skip AI search to save API)
         working-directory: contests-scraper
-        run: python scrape_all.py
+        run: python scrape_all.py --skip-ai-search
 
       - name: Generate static HTML
         run: python contests-scraper/export_html.py
 
-      - name: Commit updated data
+      - name: Commit and deploy
         run: |
           git config --global user.email "bot@ai-contests"
           git config --global user.name "AI Contest Bot"
           git add public/contests/
-          git diff --cached --quiet || git commit -m "🤖 Update contests $(date +%Y-%m-%d)"
+          git diff --cached --quiet || git commit -m "🤖 Update $(date +%Y-%m-%d)"
           git push
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: public/contests
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
