@@ -1,0 +1,106 @@
+[
+  {
+    "title": "ClickHouse + Hex AI Hackathon",
+    "prize": "$1,175,000",
+    "category": "AI黑客松",
+    "organizer": "ClickHouse + Hex",
+    "url": "https://devpost.com/search?query=ClickHouse+Hex+AI+Hackathon",
+    "deadline": "2026-06-11T23:59:00+08:00"
+  },
+  {
+    "title": "赫尔战术·市场预测 (Kaggle)",
+    "prize": "¥720,000",
+    "category": "AI开发",
+    "organizer": "Kaggle",
+    "url": "https://www.kaggle.com/competitions/hull-tactical-market-prediction",
+    "deadline": "2026-06-15T23:59:00+08:00"
+  },
+  {
+    "title": "Google Cloud Rapid Agent Hackathon",
+    "prize": "¥432,000",
+    "category": "AI黑客松",
+    "organizer": "Google Cloud",
+    "url": "https://rapid-agent.devpost.com/",
+    "deadline": "2026-06-15T23:59:00+08:00"
+  },
+  {
+    "title": "智联招聘首届AI创新大赛",
+    "prize": "¥500,000+",
+    "category": "AI开发",
+    "organizer": "智联招聘",
+    "url": "https://www.aibetas.com/aigc_events",
+    "deadline": "2026-06-14T23:59:00+08:00"
+  },
+  {
+    "title": "盐言故事×Vidu AI漫剧黑客松",
+    "prize": "¥20,000+积分",
+    "category": "AI视频",
+    "organizer": "盐言故事 + Vidu",
+    "url": "https://www.aibetas.com/aigc_events",
+    "deadline": "2026-06-20T23:59:00+08:00"
+  },
+  {
+    "title": "UiPath AgentHack",
+    "prize": "$50,000",
+    "category": "AI黑客松",
+    "organizer": "UiPath",
+    "url": "https://uipath-agenthack.devpost.com/",
+    "deadline": "2026-06-29T23:59:00+08:00"
+  },
+  {
+    "title": "HKAIIFF 香港AI国际电影节 2026",
+    "prize": "百万美元级",
+    "category": "AI视频",
+    "organizer": "HKAIIFF",
+    "url": "https://www.hkaiiff.org/",
+    "deadline": "2026-06-30T23:59:00+08:00"
+  },
+  {
+    "title": "B站首届AI创作大赛",
+    "prize": "超¥3,000,000",
+    "category": "AI视频",
+    "organizer": "哔哩哔哩",
+    "url": "https://www.bilibili.com/blackboard/activity-ai-creation",
+    "deadline": "2026-07-15T23:59:00+08:00"
+  },
+  {
+    "title": "ARC Prize 2026",
+    "prize": "$2,000,000",
+    "category": "AI开发",
+    "organizer": "ARC Prize",
+    "url": "https://arcprize.org/competitions/2026",
+    "deadline": "2026-06-30T23:59:00+08:00"
+  },
+  {
+    "title": "Build with Gemini XPRIZE",
+    "prize": "$2,000,000",
+    "category": "AI开发",
+    "organizer": "Google + XPRIZE",
+    "url": "https://www.geminixprize.com/",
+    "deadline": "2026-08-17T23:59:00+08:00"
+  },
+  {
+    "title": "腾讯全球游戏创作大赛 — AI原生游戏赛道",
+    "prize": "¥4,011,000",
+    "category": "AI开发",
+    "organizer": "腾讯",
+    "url": "https://gameinstitute.qq.com/awards2026/ai",
+    "deadline": "2026-09-01T23:59:00+08:00"
+  },
+  {
+    "title": "神山杯全球高校AI微短剧与游戏设计大赛",
+    "prize": "¥20,000",
+    "category": "AI视频",
+    "organizer": "神山杯组委会",
+    "url": "https://www.aibetas.com/aigc_events",
+    "deadline": "2026-08-15T23:59:00+08:00"
+  },
+  {
+    "title": "TapNow TapTV Arena AI动画黑客松",
+    "prize": "见官网",
+    "category": "AI视频",
+    "organizer": "TapNow",
+    "url": "https://app.tapnow.ai/event/27",
+    "deadline": "2026-06-07T23:59:00+08:00"
+  }
+]

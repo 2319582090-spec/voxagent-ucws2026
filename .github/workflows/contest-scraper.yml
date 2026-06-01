@@ -1,0 +1,50 @@
+name: AI Contest Scraper
+
+on:
+  schedule:
+    # Run twice daily: 9:00 AM and 9:00 PM CST (1:00 and 13:00 UTC)
+    - cron: "0 1 * * *"
+    - cron: "0 13 * * *"
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Run scraper
+        working-directory: contests-scraper
+        run: python scrape_all.py
+
+      - name: Commit and push data
+        run: |
+          git config --global user.email "bot@ai-contests"
+          git config --global user.name "AI Contest Bot"
+          git add public/contests/
+          git diff --cached --quiet || git commit -m "🤖 Update contest data $(date +%Y-%m-%d)"
+          git push
+
+      # Push notification via Server酱 (optional)
+      - name: Send WeChat notification
+        if: env.SERVERCHAN_KEY != ''
+        env:
+          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+        run: |
+          # Read daily push content
+          CONTENT=$(python3 -c "
+          import json
+          data = json.load(open('public/contests/daily-push.json'))
+          print(data.get('title', 'AI赛事更新'))
+          ")
+          curl -s "https://sctapi.ftqq.com/${SERVERCHAN_KEY}.send" \
+            -d "title=${CONTENT}" \
+            -d "desp=赛事数据已更新，请查看日历页面"

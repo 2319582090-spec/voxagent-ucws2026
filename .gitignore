@@ -141,3 +141,4 @@ dist
 .pnpm-store/
 
 .DS_Storeagora-skills
+__pycache__/
