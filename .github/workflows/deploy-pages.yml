@@ -1,8 +1,8 @@
-name: Deploy Contest Calendar
+name: Scrape + Deploy + Sync to Feishu
 
 on:
   schedule:
-    - cron: "0 2 * * 1,4"   # 每周一、四 北京时间 10:00（每周2次）
+    - cron: "0 2 */3 * *"   # 每3天 北京时间 10:00
   workflow_dispatch:
 
 permissions:
@@ -35,7 +35,7 @@ jobs:
       - name: Generate static HTML
         run: python contests-scraper/export_html.py
 
-      - name: Commit and deploy
+      - name: Commit and push
         run: |
           git config --global user.email "bot@ai-contests"
           git config --global user.name "AI Contest Bot"
@@ -48,3 +48,25 @@ jobs:
         with:
           path: public/contests
       - uses: actions/deploy-pages@v4
+
+  sync-to-feishu:
+    runs-on: ubuntu-latest
+    needs: scrape-and-deploy
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync to Feishu Bitable
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          BITABLE_APP_TOKEN: ${{ secrets.BITABLE_APP_TOKEN }}
+          BITABLE_TABLE_ID: ${{ secrets.BITABLE_TABLE_ID }}
+        run: python contests-scraper/sync/feishu_sync.py
