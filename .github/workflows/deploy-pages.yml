@@ -2,7 +2,7 @@ name: Scrape + Deploy + Sync to Feishu
 
 on:
   schedule:
-    - cron: "0 2 */3 * *"   # 每3天 北京时间 10:00
+    - cron: "0 2 * * *"   # 每天北京时间 10:00
   workflow_dispatch:
 
 permissions:
@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4 lxml
 
-      - name: Run scraper (skip AI search to save API)
+      - name: Run scraper
         working-directory: contests-scraper
         run: python scrape_all.py --skip-ai-search
 
@@ -40,7 +40,7 @@ jobs:
           git config --global user.email "bot@ai-contests"
           git config --global user.name "AI Contest Bot"
           git add public/contests/
-          git diff --cached --quiet || git commit -m "🤖 Update $(date +%Y-%m-%d)"
+          git diff --cached --quiet || git commit -m "🤖 Daily update $(date +%Y-%m-%d)"
           git push
 
       - uses: actions/configure-pages@v4
@@ -52,6 +52,7 @@ jobs:
   sync-to-feishu:
     runs-on: ubuntu-latest
     needs: scrape-and-deploy
+    if: ${{ secrets.BITABLE_APP_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
 

@@ -1,7 +1,44 @@
 {
-  "date": "2026-06-01",
-  "title": "AI赏金播报：51个赛事进行中",
-  "content": "🤖 AI 赏金播报 (2026-06-01)\n共 51 个进行中赛事：\n\n🔴 即将截止（7天内）:\n  • 余震预测技术国际大赛 (赛季1) - $30,000\n  • Agent Academy Hackathon (Microsoft) - Microsoft周边 + 认可\n  • IEEE AICAS 2026 Grand Challenge - 端侧VLM推理FPGA软硬件系统设计赛道 (赛季2) - $3,550\n  • 满帮集团Agent算法大赛：基于Agentic AI 的卡车司机连续找货决策 (赛季1) - ￥217,000\n  • TapNow TapTV Arena AI动画黑客松 - 见官网\n  • IEEE AICAS 2026 Grand Challenge - 面向AI芯片的VLM高效推理与优化赛道 (赛季1) - $3,550\n\n🟡 近期赛事（30天内）:\n  • 途虎养车×商汤Seko｜虎力全开·AI养车创作季 - ¥15,000\n  • 途虎养车×商汤Seko AI养车创作季 - ¥15,000\n  • ClickHouse + Hex AI Hackathon - $1,175,000\n  • TapTV Arena AI动画黑客松 · 杭州站 - ¥600,000（现金，约$83,000）\n  • 智联招聘首届AI创新大赛 - ¥500,000+\n  • ETHGlobal New York 2026 - $500,000+（赞助商奖金）\n  • Microsoft Agents League Hackathon - $55,000\n  • 第一届国际工程智能大赛-土木工程赛道：桥梁结构关键构件智能网格生成挑战赛 (赛季2) - ￥100,000\n\n🟢 更多赛事: 21 个",
-  "total": 51,
-  "urgent_count": 6
+  "updated_at": "2026-06-02T08:32:33.964047+00:00",
+  "total": 40,
+  "urgent": [
+    {
+      "title": "余震预测技术国际大赛 (赛季1)",
+      "prize": "$30,000",
+      "deadline": "2026-06-03",
+      "url": "https://tianchi.aliyun.com/competition/entrance/532460/introduction",
+      "category": "AI开发"
+    }
+  ],
+  "soon": [
+    {
+      "title": "IEEE AICAS 2026 Grand Challenge - 端侧VLM推理FPGA软硬件系统设计赛道 (赛季2)",
+      "prize": "$3,550",
+      "deadline": "2026-06-06",
+      "url": "https://tianchi.aliyun.com/competition/entrance/532451/introduction",
+      "category": "AI开发"
+    },
+    {
+      "title": "满帮集团Agent算法大赛：基于Agentic AI 的卡车司机连续找货决策 (赛季1)",
+      "prize": "￥217,000",
+      "deadline": "2026-06-07",
+      "url": "https://tianchi.aliyun.com/competition/entrance/532467/introduction",
+      "category": "AI开发"
+    },
+    {
+      "title": "TapNow TapTV Arena AI动画黑客松",
+      "prize": "见官网",
+      "deadline": "2026-06-07",
+      "url": "https://app.tapnow.ai/event/27",
+      "category": "AI视频"
+    },
+    {
+      "title": "IEEE AICAS 2026 Grand Challenge - 面向AI芯片的VLM高效推理与优化赛道 (赛季1)",
+      "prize": "$3,550",
+      "deadline": "2026-06-08",
+      "url": "https://tianchi.aliyun.com/competition/entrance/532450/introduction",
+      "category": "AI开发"
+    }
+  ],
+  "top_prize": []
 }

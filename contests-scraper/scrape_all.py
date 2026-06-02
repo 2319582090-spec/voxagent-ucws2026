@@ -1,6 +1,6 @@
 """
 Main aggregator - runs all scrapers, merges, deduplicates, outputs JSON.
-Usage: python scrape_all.py
+Usage: python scrape_all.py [--skip-ai-search]
 """
 import importlib
 import json
@@ -25,22 +25,71 @@ def normalize_for_dedup(title):
     return s.strip()
 
 
+def _data_score(contest):
+    """Score a contest entry by data quality."""
+    score = 0
+    if contest.get("url", "").startswith("http"):
+        score += 3
+    prize = contest.get("prize", "")
+    if prize and prize != "见官网":
+        score += 2
+    if contest.get("organizer"):
+        score += 1
+    return score
+
+
+def _generate_push(output):
+    """Generate a push-friendly summary."""
+    contests = output.get("contests", [])
+    urgent = [c for c in contests if _days_left(c) <= 3]
+    soon = [c for c in contests if 3 < _days_left(c) <= 7]
+    big = sorted([c for c in contests if c.get("prize_usd", 0) >= 50000],
+                 key=lambda x: x.get("prize_usd", 0), reverse=True)[:5]
+    return {
+        "updated_at": output["updated_at"],
+        "total": output["total"],
+        "urgent": [_brief(c) for c in urgent],
+        "soon": [_brief(c) for c in soon],
+        "top_prize": [_brief(c) for c in big],
+    }
+
+
+def _days_left(contest):
+    try:
+        dl = contest.get("deadline", "")
+        if not dl:
+            return 999
+        dt = datetime.fromisoformat(dl)
+        return (dt - datetime.now(timezone.utc)).days
+    except:
+        return 999
+
+
+def _brief(c):
+    return {
+        "title": c.get("title", ""),
+        "prize": c.get("prize", ""),
+        "deadline": c.get("deadline", "")[:10],
+        "url": c.get("url", ""),
+        "category": c.get("category", ""),
+    }
+
+
 def run_all():
     print(f"🔍 开始抓取 AI 赛事... ({datetime.now().strftime('%Y-%m-%d %H:%M')})")
     print()
 
     all_contests = []
     sources = []
-
     for _, module_name, _ in pkgutil.iter_modules(["sources"]):
         sources.append(module_name)
 
-    import sys
-skip_ai = "--skip-ai-search" in sys.argv
-for name in sorted(sources):
+    skip_ai = "--skip-ai-search" in sys.argv
+    for name in sorted(sources):
         try:
             module = importlib.import_module(f"sources.{name}", package=None)
-            if skip_ai and name == "ai_search": continue
+            if skip_ai and name == "ai_search":
+                continue
             if not hasattr(module, "scrape"):
                 continue
             print(f"  ⏳ 正在抓取 {name}...")
@@ -50,20 +99,18 @@ for name in sorted(sources):
         except Exception as e:
             print(f"  ❌ {name} 失败: {e}")
 
-    # Smart deduplication: normalize title, keep the one with more info
+    # Smart deduplication
     seen = {}
     unique = []
     for c in all_contests:
-        key = normalize_for_dedup(c["title"])
+        key = normalize_for_dedup(c.get("title", ""))
         if not key:
             continue
         if key in seen:
-            # Keep the one with better data (has URL, has prize amount)
             existing = seen[key]
             c_score = _data_score(c)
             e_score = _data_score(existing)
             if c_score > e_score:
-                # Replace
                 idx = unique.index(existing)
                 unique[idx] = c
                 seen[key] = c
@@ -71,10 +118,15 @@ for name in sorted(sources):
             seen[key] = c
             unique.append(c)
 
-    # Sort by deadline (soonest first)
+    # Sort by deadline
     unique.sort(key=lambda x: x.get("deadline", "9999"))
 
-    # Add summary stats
+    # Add prize_usd if missing
+    for c in unique:
+        if "prize_usd" not in c:
+            c["prize_usd"] = 0
+
+    # Build output
     now_str = datetime.now(timezone.utc).isoformat()
     output = {
         "updated_at": now_str,
@@ -109,75 +161,6 @@ for name in sorted(sources):
         print(f"   [{plat}]: {count}")
     print()
     return output
-
-
-def _data_score(contest):
-    """Score a contest entry by data quality."""
-    score = 0
-    if contest.get("url", "").startswith("http"):
-        score += 3
-    prize = contest.get("prize", "")
-    if prize and prize != "见官网":
-        score += 2
-    if contest.get("organizer", "未知") != "未知":
-        score += 1
-    return score
-
-
-def _generate_push(data):
-    """Generate WeChat-friendly daily push content."""
-    contests = data.get("contests", [])
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-
-    lines = [f"🤖 AI 赏金播报 ({today})", f"共 {len(contests)} 个进行中赛事：", ""]
-
-    urgent = []
-    upcoming = []
-    later = []
-
-    now = datetime.now(timezone.utc)
-    for c in contests:
-        if not c.get("deadline"):
-            later.append(c)
-            continue
-        try:
-            dl = datetime.fromisoformat(c["deadline"])
-            if dl.tzinfo is None:
-                dl = dl.replace(tzinfo=timezone.utc)
-            days_left = (dl - now).days
-        except Exception:
-            later.append(c)
-            continue
-
-        if days_left <= 7:
-            urgent.append(c)
-        elif days_left <= 30:
-            upcoming.append(c)
-        else:
-            later.append(c)
-
-    if urgent:
-        lines.append("🔴 即将截止（7天内）:")
-        for c in urgent:
-            lines.append(f"  • {c['title']} - {c['prize']}")
-        lines.append("")
-
-    if upcoming:
-        lines.append("🟡 近期赛事（30天内）:")
-        for c in upcoming[:8]:
-            lines.append(f"  • {c['title']} - {c['prize']}")
-        lines.append("")
-
-    if later:
-        lines.append(f"🟢 更多赛事: {len(later)} 个")
-
-    return {
-        "date": today,
-        "title": f"AI赏金播报：{len(contests)}个赛事进行中",
-        "content": "\n".join(lines),
-        "total": len(contests),
-        "urgent_count": len(urgent),
-    }
 
 
 if __name__ == "__main__":

@@ -1,32 +1,17 @@
 {
-  "updated_at": "2026-06-02T07:19:41.829866+00:00",
-  "total": 60,
-  "total_prize_usd": 844434738.888889,
-  "by_category": {
-    "AI开发": 31,
-    "AI视频": 14,
-    "AI黑客松": 15
-  },
+  "updated_at": "2026-06-02T08:32:33.964047+00:00",
+  "total": 40,
   "contests": [
     {
-      "title": "淘宝无限帧AI创意赛",
-      "prize": "¥44,000",
-      "prize_usd": 6111.111111111111,
+      "id": "tianchi_532460",
+      "title": "余震预测技术国际大赛 (赛季1)",
+      "prize": "$30,000",
       "category": "AI开发",
-      "organizer": "",
-      "url": "",
-      "deadline": "2026-06-05T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "S2跨境OPC",
-      "prize": "¥45,000现金 + ¥100,000算力",
-      "prize_usd": 6250.0,
-      "category": "AI开发",
-      "organizer": "",
-      "url": "",
-      "deadline": "2026-06-06T00:00:00+08:00",
-      "platform": "AI掘金"
+      "organizer": "阿里云",
+      "url": "https://tianchi.aliyun.com/competition/entrance/532460/introduction",
+      "deadline": "2026-06-03T23:59:59+08:00",
+      "platform": "天池",
+      "prize_usd": 0
     },
     {
       "id": "tianchi_532451",
@@ -37,17 +22,7 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532451/introduction",
       "deadline": "2026-06-06T23:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 3550.0
-    },
-    {
-      "title": "TapTV Arena AI动画黑客松·杭州站",
-      "prize": "¥600,000现金 + ¥140万算力",
-      "prize_usd": 833333333.3333333,
-      "category": "AI视频",
-      "organizer": "",
-      "url": "https://www.aitop100.cn/infomation/details/33855.html",
-      "deadline": "2026-06-07T00:00:00+08:00",
-      "platform": "AI掘金"
+      "prize_usd": 0
     },
     {
       "id": "tianchi_532467",
@@ -58,7 +33,7 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532467/introduction",
       "deadline": "2026-06-07T11:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 30138.888888888887
+      "prize_usd": 0
     },
     {
       "id": "manual_12",
@@ -80,40 +55,10 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532450/introduction",
       "deadline": "2026-06-08T23:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 3550.0
+      "prize_usd": 0
     },
     {
-      "title": "ClickHouse + Hex AI Hackathon",
-      "prize": "$1,175,000（≈¥850万）",
-      "prize_usd": 1175000.0,
-      "category": "AI黑客松",
-      "organizer": "ClickHouse",
-      "url": "",
-      "deadline": "2026-06-11T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "虎力全开·AI养车创作季（途虎×商汤）",
-      "prize": "¥200,000",
-      "prize_usd": 27777.777777777777,
-      "category": "AI开发",
-      "organizer": "",
-      "url": "",
-      "deadline": "2026-06-11T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "途虎养车×商汤Seko AI养车创作季",
-      "prize": "¥15,000",
-      "prize_usd": 2083.3333333333335,
-      "category": "AI开发",
-      "organizer": "",
-      "url": "",
-      "deadline": "2026-06-11T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "id": "desktop_39499",
+      "id": "desktop_76117",
       "title": "途虎养车×商汤Seko｜虎力全开·AI养车创作季",
       "prize": "¥15,000",
       "category": "AI开发",
@@ -121,37 +66,73 @@
       "url": "https://www.aibetas.com/aigc_events",
       "deadline": "2026-06-11T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 2083.3333333333335
+      "prize_usd": 0
     },
     {
+      "id": "desktop_24445",
+      "title": "途虎养车×商汤Seko AI养车创作季",
+      "prize": "¥15,000",
+      "category": "AI开发",
+      "organizer": "AI贝塔斯",
+      "url": "https://www.aibetas.com/aigc_events",
+      "deadline": "2026-06-11T00:00:00+08:00",
+      "platform": "AI掘金",
+      "prize_usd": 0
+    },
+    {
+      "id": "manual_0",
+      "title": "ClickHouse + Hex AI Hackathon",
+      "prize": "$1,175,000",
+      "category": "AI黑客松",
+      "organizer": "ClickHouse + Hex",
+      "url": "https://devpost.com/search?query=ClickHouse+Hex+AI+Hackathon",
+      "deadline": "2026-06-11T23:59:00+08:00",
+      "platform": "手动添加",
+      "prize_usd": 0
+    },
+    {
+      "id": "desktop_00728",
+      "title": "TapTV Arena AI动画黑客松 · 杭州站",
+      "prize": "¥600,000（现金，约$83,000）",
+      "category": "AI视频",
+      "organizer": "未知",
+      "url": "https://www.aitop100.cn/infomation/details/33855.html",
+      "deadline": "2026-06-12T00:00:00+08:00",
+      "platform": "AI掘金",
+      "prize_usd": 0
+    },
+    {
+      "id": "desktop_26625",
       "title": "智联招聘首届AI创新大赛",
       "prize": "¥500,000+",
-      "prize_usd": 69444.44444444444,
       "category": "AI开发",
       "organizer": "AI贝塔斯",
       "url": "https://www.aibetas.com/aigc_events",
       "deadline": "2026-06-14T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
+      "id": "desktop_68782",
       "title": "ETHGlobal New York 2026",
-      "prize": "$500,000+",
-      "prize_usd": 500000.0,
+      "prize": "$500,000+（赞助商奖金）",
       "category": "AI开发",
-      "organizer": "ETHGlobal",
+      "organizer": "未知",
       "url": "https://ethglobal.com/",
       "deadline": "2026-06-14T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
+      "id": "desktop_40081",
       "title": "Microsoft Agents League Hackathon",
       "prize": "$55,000",
-      "prize_usd": 55000.0,
       "category": "AI黑客松",
-      "organizer": "Microsoft",
+      "organizer": "未知",
       "url": "https://agentdeadlines.com/",
       "deadline": "2026-06-14T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
       "id": "tianchi_532443",
@@ -162,27 +143,29 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532443/introduction",
       "deadline": "2026-06-14T23:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 13888.888888888889
+      "prize_usd": 0
     },
     {
-      "title": "Mantle Turing Test Hackathon",
-      "prize": "$100,000",
-      "prize_usd": 100000.0,
-      "category": "AI黑客松",
-      "organizer": "DoraHacks",
-      "url": "https://dorahacks.io/hackathon/turing-test-hackathon-2026",
-      "deadline": "2026-06-15T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
+      "id": "desktop_30233",
       "title": "Google Cloud Rapid Agent Hackathon",
       "prize": "¥432,000",
-      "prize_usd": 60000.0,
       "category": "AI黑客松",
       "organizer": "Devpost",
       "url": "https://rapid-agent.devpost.com/",
       "deadline": "2026-06-15T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
+    },
+    {
+      "id": "desktop_36050",
+      "title": "Mantle Turing Test Hackathon 2026",
+      "prize": "$223,000+（含$100K现金及Web3激励）",
+      "category": "AI黑客松",
+      "organizer": "未知",
+      "url": "https://devhub.mantle.xyz/",
+      "deadline": "2026-06-15T00:00:00+08:00",
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
       "id": "kaggle_5-day-ai-agents-intensive-vibecoding-course-with-google",
@@ -196,7 +179,18 @@
       "prize_usd": 0
     },
     {
-      "id": "desktop_27870",
+      "id": "manual_1",
+      "title": "赫尔战术·市场预测 (Kaggle)",
+      "prize": "¥720,000",
+      "category": "AI开发",
+      "organizer": "Kaggle",
+      "url": "https://www.kaggle.com/competitions/hull-tactical-market-prediction",
+      "deadline": "2026-06-15T23:59:00+08:00",
+      "platform": "手动添加",
+      "prize_usd": 0
+    },
+    {
+      "id": "desktop_93345",
       "title": "Agents Without Masters — NEAR AI × DoraHacks",
       "prize": "$25,000",
       "category": "AI黑客松",
@@ -204,10 +198,10 @@
       "url": "https://dorahacks.io/",
       "deadline": "2026-06-16T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 25000.0
+      "prize_usd": 0
     },
     {
-      "id": "desktop_30885",
+      "id": "desktop_54748",
       "title": "AI Agents Hackathon 2026 (Databricks)",
       "prize": "$10,000 / $5,000 / $2,500",
       "category": "AI黑客松",
@@ -215,41 +209,21 @@
       "url": "https://agentdeadlines.com/",
       "deadline": "2026-06-18T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 10000.0
+      "prize_usd": 0
     },
     {
-      "title": "知乎&Vidu AI漫剧黑客松",
-      "prize": "¥65,000",
-      "prize_usd": 9027.777777777777,
-      "category": "AI视频",
-      "organizer": "",
-      "url": "",
-      "deadline": "2026-06-20T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
+      "id": "desktop_25902",
       "title": "盐言故事×Vidu AI漫剧黑客松",
       "prize": "¥20,000+积分",
-      "prize_usd": 2777.777777777778,
       "category": "AI视频",
       "organizer": "AI贝塔斯",
       "url": "https://www.aibetas.com/aigc_events",
       "deadline": "2026-06-20T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
-      "id": "aisearch_ai_39033",
-      "title": "AI Robotics Hackathon",
-      "prize": "$35,000",
-      "category": "AI黑客松",
-      "organizer": "Robotics AI Group",
-      "url": "https://example.com/ai-robotics-hackathon",
-      "deadline": "2026-06-20T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 35000.0
-    },
-    {
-      "id": "desktop_21714",
+      "id": "desktop_95943",
       "title": "UC Berkeley AI Hackathon 2026",
       "prize": "$100,000",
       "category": "AI黑客松",
@@ -257,10 +231,10 @@
       "url": "https://aihackathon.berkeley.edu/",
       "deadline": "2026-06-20T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 100000.0
+      "prize_usd": 0
     },
     {
-      "id": "desktop_69419",
+      "id": "desktop_93229",
       "title": "USAII Global AI Hackathon 2026",
       "prize": "$15,000+（含AI认证奖学金）",
       "category": "AI黑客松",
@@ -268,61 +242,43 @@
       "url": "https://aihackathon.usaii.org/",
       "deadline": "2026-06-21T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 15000.0
+      "prize_usd": 0
     },
     {
+      "id": "desktop_20042",
       "title": "UiPath AgentHack",
       "prize": "$50,000",
-      "prize_usd": 50000.0,
       "category": "AI黑客松",
       "organizer": "Devpost",
       "url": "https://uipath-agenthack.devpost.com/",
       "deadline": "2026-06-29T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
-      "title": "香港AI国际电影节 HKAIIFF 2026",
-      "prize": "百万美元级（含算力）",
-      "prize_usd": 0,
-      "category": "AI视频",
-      "organizer": "HKAIIFF",
-      "url": "https://www.hkaiiff.org/",
-      "deadline": "2026-06-30T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "全球华侨故事AI视频大赛",
-      "prize": "¥100,000",
-      "prize_usd": 13888.888888888889,
-      "category": "AI视频",
-      "organizer": "",
-      "url": "",
-      "deadline": "2026-06-30T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
+      "id": "desktop_14045",
       "title": "HKAIIFF 香港AI国际电影节 2026",
       "prize": "百万美元级",
-      "prize_usd": 0,
       "category": "AI视频",
       "organizer": "HKAIIFF",
       "url": "https://www.hkaiiff.org/",
       "deadline": "2026-06-30T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
-      "id": "aisearch_ai_25522",
-      "title": "AI Hackathon for Sustainability",
-      "prize": "$20,000",
-      "category": "AI黑客松",
-      "organizer": "Green Tech Alliance",
-      "url": "https://example.com/ai-hackathon-sustainability",
+      "id": "desktop_20286",
+      "title": "ARC Prize 2026",
+      "prize": "$2,000,000",
+      "category": "AI开发",
+      "organizer": "ARC Prize",
+      "url": "https://arcprize.org/competitions/2026",
       "deadline": "2026-06-30T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 20000.0
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
-      "id": "desktop_37066",
+      "id": "desktop_28317",
       "title": "AGIBOT World Challenge 2026 @ ICRA",
       "prize": "$530,000",
       "category": "AI开发",
@@ -330,7 +286,7 @@
       "url": "https://agibot-world.com/challenge2026",
       "deadline": "2026-06-30T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 530000.0
+      "prize_usd": 0
     },
     {
       "id": "tianchi_532463",
@@ -341,21 +297,10 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532463/introduction",
       "deadline": "2026-06-30T23:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 5555.555555555556
+      "prize_usd": 0
     },
     {
-      "id": "aisearch_ai_16782",
-      "title": "AI Animation Competition",
-      "prize": "$12,000",
-      "category": "AI视频",
-      "organizer": "Animation AI Society",
-      "url": "https://example.com/ai-animation-comp",
-      "deadline": "2026-07-05T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 12000.0
-    },
-    {
-      "id": "desktop_08714",
+      "id": "desktop_93688",
       "title": "RAISE Summit AI Hackathon 2026",
       "prize": "€250,000+（约$270,000）",
       "category": "AI黑客松",
@@ -363,18 +308,7 @@
       "url": "https://www.raisesummit.com/hackathon",
       "deadline": "2026-07-08T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 270000.0
-    },
-    {
-      "id": "aisearch_ai_89158",
-      "title": "AI for Healthcare Hackathon",
-      "prize": "$25,000",
-      "category": "AI黑客松",
-      "organizer": "Health AI Consortium",
-      "url": "https://example.com/ai-healthcare-hackathon",
-      "deadline": "2026-07-10T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 25000.0
+      "prize_usd": 0
     },
     {
       "id": "tianchi_532474",
@@ -385,10 +319,10 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532474/introduction",
       "deadline": "2026-07-10T23:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 2777.777777777778
+      "prize_usd": 0
     },
     {
-      "id": "desktop_49633",
+      "id": "desktop_27013",
       "title": "Slack Agent Builder Challenge (Salesforce)",
       "prize": "$42,000",
       "category": "AI开发",
@@ -396,28 +330,7 @@
       "url": "https://slackhack.devpost.com/",
       "deadline": "2026-07-13T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 42000.0
-    },
-    {
-      "title": "B站AI创作大赛·三国主题赛",
-      "prize": "约¥400,000（总奖池）",
-      "prize_usd": 55555.555555555555,
-      "category": "AI视频",
-      "organizer": "哔哩哔哩",
-      "url": "https://www.bilibili.com/opus/1191141387814305792",
-      "deadline": "2026-07-15T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "id": "aisearch_ai_36229",
-      "title": "Global AI Challenge 2026",
-      "prize": "$50,000",
-      "category": "AI开发",
-      "organizer": "AI Institute",
-      "url": "https://example.com/ai-challenge-2026",
-      "deadline": "2026-07-15T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 50000.0
+      "prize_usd": 0
     },
     {
       "id": "kaggle_neurogolf-2026",
@@ -431,6 +344,17 @@
       "prize_usd": 0
     },
     {
+      "id": "manual_7",
+      "title": "B站首届AI创作大赛",
+      "prize": "超¥3,000,000",
+      "category": "AI视频",
+      "organizer": "哔哩哔哩",
+      "url": "https://www.bilibili.com/blackboard/activity-ai-creation",
+      "deadline": "2026-07-15T23:59:00+08:00",
+      "platform": "手动添加",
+      "prize_usd": 0
+    },
+    {
       "id": "tianchi_532355",
       "title": "AFAC2025：初创组 (赛季1)",
       "prize": "￥340,000",
@@ -439,7 +363,7 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532355/introduction",
       "deadline": "2026-07-15T23:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 47222.22222222222
+      "prize_usd": 0
     },
     {
       "id": "tianchi_532475",
@@ -450,42 +374,21 @@
       "url": "https://tianchi.aliyun.com/competition/entrance/532475/introduction",
       "deadline": "2026-07-17T23:59:59+08:00",
       "platform": "天池",
-      "prize_usd": 1111.111111111111
+      "prize_usd": 0
     },
     {
-      "id": "aisearch_ai_75371",
-      "title": "Computer Vision Challenge",
-      "prize": "$28,000",
+      "id": "desktop_91824",
+      "title": "CAR-bench Challenge（BMW & 奥格斯堡大学）",
+      "prize": "$5,000（Anthropic积分 + Codex Pro订阅）",
       "category": "AI开发",
-      "organizer": "Vision AI Lab",
-      "url": "https://example.com/cv-challenge",
-      "deadline": "2026-07-18T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 28000.0
-    },
-    {
-      "title": "CAR-bench Challenge",
-      "prize": "$5,000积分",
-      "prize_usd": 5000.0,
-      "category": "AI开发",
-      "organizer": "",
-      "url": "",
+      "organizer": "未知",
+      "url": "https://agentdeadlines.com/",
       "deadline": "2026-07-19T00:00:00+08:00",
-      "platform": "AI掘金"
+      "platform": "AI掘金",
+      "prize_usd": 0
     },
     {
-      "id": "aisearch_ai_97512",
-      "title": "AI Video Creation Contest",
-      "prize": "$10,000",
-      "category": "AI视频",
-      "organizer": "Creative AI Society",
-      "url": "https://example.com/ai-video-contest",
-      "deadline": "2026-07-20T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 10000.0
-    },
-    {
-      "id": "desktop_19815",
+      "id": "desktop_54191",
       "title": "VITA SHORTS 2026：AI 短片竞赛单元",
       "prize": "奖项未列（最佳AI短片等5个奖项）",
       "category": "AI开发",
@@ -496,39 +399,7 @@
       "prize_usd": 0
     },
     {
-      "id": "aisearch_ai_63529",
-      "title": "AI Music Generation Contest",
-      "prize": "$18,000",
-      "category": "AI视频",
-      "organizer": "Music AI Foundation",
-      "url": "https://example.com/ai-music-contest",
-      "deadline": "2026-07-22T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 18000.0
-    },
-    {
-      "title": "星芒算法挑战赛2026（马栏山杯）",
-      "prize": "¥220,000",
-      "prize_usd": 30555.555555555555,
-      "category": "AI开发",
-      "organizer": "",
-      "url": "https://challenge.ai.mgtv.com/",
-      "deadline": "2026-07-25T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "id": "aisearch_ai_35442",
-      "title": "AI Short Film Festival",
-      "prize": "$15,000",
-      "category": "AI视频",
-      "organizer": "Digital Arts Institute",
-      "url": "https://example.com/ai-short-film-festival",
-      "deadline": "2026-07-25T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 15000.0
-    },
-    {
-      "id": "desktop_03512",
+      "id": "desktop_20777",
       "title": "ETHGlobal Lisbon 2026",
       "prize": "$500,000+（赞助商奖金）",
       "category": "AI开发",
@@ -536,10 +407,10 @@
       "url": "https://ethglobal.com/",
       "deadline": "2026-07-26T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 500000.0
+      "prize_usd": 0
     },
     {
-      "id": "desktop_93212",
+      "id": "desktop_87560",
       "title": "VSLive AI Hackathon (Microsoft)",
       "prize": "最高$25,000",
       "category": "AI黑客松",
@@ -547,31 +418,10 @@
       "url": "https://agentdeadlines.com/",
       "deadline": "2026-07-29T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 25000.0
+      "prize_usd": 0
     },
     {
-      "id": "aisearch_ai_55738",
-      "title": "NLP Innovation Challenge",
-      "prize": "$40,000",
-      "category": "AI开发",
-      "organizer": "NLP Tech Hub",
-      "url": "https://example.com/nlp-challenge",
-      "deadline": "2026-07-30T00:00:00+08:00",
-      "platform": "AI搜索",
-      "prize_usd": 40000.0
-    },
-    {
-      "title": "KDD Cup · 腾讯UNI-REC",
-      "prize": "~$885,000（≈¥640万）",
-      "prize_usd": 885000.0,
-      "category": "AI开发",
-      "organizer": "腾讯",
-      "url": "",
-      "deadline": "2026-07-31T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "id": "desktop_30843",
+      "id": "desktop_69989",
       "title": "KDD Cup 2026 — Tencent UNI-REC Challenge",
       "prize": "$885,000",
       "category": "AI开发",
@@ -579,10 +429,10 @@
       "url": "https://algo.qq.com/",
       "deadline": "2026-07-31T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 885000.0
+      "prize_usd": 0
     },
     {
-      "id": "desktop_19614",
+      "id": "desktop_00342",
       "title": "KDD Cup 2026 — Data Agents Challenge（港科大）",
       "prize": "~$30,000",
       "category": "AI开发",
@@ -590,57 +440,18 @@
       "url": "https://agentdeadlines.com/",
       "deadline": "2026-07-31T00:00:00+08:00",
       "platform": "AI掘金",
-      "prize_usd": 30000.0
-    },
-    {
-      "title": "腾讯全球游戏创作大赛 — AI原生游戏赛道",
-      "prize": "¥4,011,000",
-      "prize_usd": 557083.3333333334,
-      "category": "AI视频",
-      "organizer": "腾讯",
-      "url": "https://gameinstitute.qq.com/awards2026/ai",
-      "deadline": "2026-08-15T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "Build with Gemini XPRIZE 2026",
-      "prize": "$2,000,000（冠军$50万）",
-      "prize_usd": 2000000.0,
-      "category": "AI开发",
-      "organizer": "Google",
-      "url": "https://geminixprize.com",
-      "deadline": "2026-08-17T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "腾讯云黑客松·游戏开发挑战赛",
-      "prize": "¥1,000,000",
-      "prize_usd": 138888.88888888888,
-      "category": "AI黑客松",
-      "organizer": "腾讯",
-      "url": "https://tch.cloud.tencent.com/hackathon",
-      "deadline": "2026-09-01T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "2026腾讯全球游戏创作大赛（AI原生游戏赛道）",
-      "prize": "¥4,011,000（总奖金池）",
-      "prize_usd": 557083.3333333334,
-      "category": "AI视频",
-      "organizer": "腾讯",
-      "url": "https://gameinstitute.qq.com/awards2026",
-      "deadline": "2026-09-15T00:00:00+08:00",
-      "platform": "AI掘金"
-    },
-    {
-      "title": "ARC Prize 2026",
-      "prize": "$2,000,000+（ARC-AGI-2/3/Paper三条赛道）",
-      "prize_usd": 2000000.0,
-      "category": "AI开发",
-      "organizer": "ARC Prize",
-      "url": "https://arcprize.org/competitions/2026",
-      "deadline": "2026-11-02T00:00:00+08:00",
-      "platform": "AI掘金"
+      "prize_usd": 0
     }
-  ]
+  ],
+  "by_category": {
+    "AI开发": 24,
+    "AI视频": 5,
+    "AI黑客松": 11
+  },
+  "by_platform": {
+    "天池": 9,
+    "手动添加": 4,
+    "AI掘金": 25,
+    "Kaggle": 2
+  }
 }
