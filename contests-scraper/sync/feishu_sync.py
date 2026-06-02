@@ -15,8 +15,8 @@ FEISHU_APP_SECRET = "6lJ2gJXTdMDBZlHjQyJsDdG6Zl0YWcXS"
 
 # 这两个需要在飞书妙搭建好后填入
 # 在飞书妙搭 → 设置 → 多维表格 → 找到 app_token 和 table_id
-BITABLE_APP_TOKEN = ""   # 填入: 例如 "bascnXXXXXXXXXX"
-BITABLE_TABLE_ID = ""    # 填入: 例如 "tblXXXXXXXXXX"
+BITABLE_APP_TOKEN = "CjJ1bkX5faXhv7sq10nc8zW7nE2"
+BITABLE_TABLE_ID = "tbloPb9tx3wnUSVf"
 
 DATA_FILE = Path(__file__).parent.parent.parent / "public" / "contests" / "all.json"
 # ==============================
@@ -60,7 +60,7 @@ def get_existing_records(token):
         
         for item in data.get("data", {}).get("items", []):
             fields = item.get("fields", {})
-            name = fields.get("比赛名称", "")
+            name = fields.get("文本", "")
             if name:
                 records[name] = item["record_id"]
         
@@ -85,17 +85,17 @@ def prepare_fields(contest):
     update_ts = int(datetime.now(timezone(timedelta(hours=8))).timestamp() * 1000)
     
     fields = {
-        "比赛名称": contest.get("title", ""),
+        "文本": contest.get("title", ""),
         "奖金金额": contest.get("prize", "见官网"),
         "奖金美元数": int(contest.get("prize_usd", 0)),
-        "比赛类别": contest.get("category", "AI开发"),
+        "单选": contest.get("category", "AI开发"),
         "主办方": contest.get("organizer", ""),
         "来源平台": contest.get("platform", ""),
         "更新时间": update_ts,
     }
     
     if deadline_ts:
-        fields["截止日期"] = deadline_ts
+        fields["日期"] = deadline_ts
     
     url = contest.get("url", "")
     if url and url.startswith("http"):
